@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Post from "../Post/Post";
+import PostForm from "../PostForm/PostForm";
+
 
 const Wall = () => {
   const [posts, setPosts] = useState([
@@ -37,6 +39,7 @@ const Wall = () => {
       likedByMe: true,
       created: 1603774800,
     },
+    
   ]);
 
   const handlePostLike = (id) => {
@@ -78,9 +81,12 @@ const Wall = () => {
       })
     );
   };
-
+   const handleSave = (post) => {
+     setPosts((prevState) => [{ ...post }, ...prevState]);
+  };
   return (
     <>
+      <PostForm onSave={handleSave}/>
       <div>
         {posts.map((p) => (
           <Post
